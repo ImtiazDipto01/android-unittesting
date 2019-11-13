@@ -137,7 +137,7 @@ public class Notes implements Parcelable {
         if(getClass() != o.getClass()) return false ;
         Notes notes = (Notes) o;
         return getId() == notes.id &&
-                getTitle().equals(notes.title) ;
+                getTitle().equals(notes.title) && getContent().equals(notes.content);
     }
 
 }

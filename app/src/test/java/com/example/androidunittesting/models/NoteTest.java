@@ -21,12 +21,76 @@ public class NoteTest {
 
         //Assert
         Assertions.assertEquals(note1, note2);
-        System.out.println("Objects are Equal");
+        System.out.println("Note Objects are Equal");
     }
 
     //two notes with different ids
     @Test
-    void isTwoNotesMatchWithDifferentIds() {
+    void isTwoNotesMatchWithDifferentIdsReturnFalse() {
+        // Arrange
+        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        note1.setId(1);
+        Notes note2 = new Notes("Title #1", "Content #1", "11-2019");
+        note2.setId(2);
+
+        //Act
+        /*nothing for act*/
+
+        //Assert
+        Assertions.assertNotEquals(note1, note2);
+        System.out.println("Notes Objects are not Equal");
+    }
+
+    @Test
+    void isNotesAreEqualWithDifferentTimeStampReturnTrue() {
+        // Arrange
+        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        note1.setId(1);
+        Notes note2 = new Notes("Title #1", "Content #1", "12-2019");
+        note2.setId(1);
+
+        //Act
+        /*nothing for act*/
+
+        //Assert
+        Assertions.assertEquals(note1, note2);
+        System.out.println("Note Objects are Equal");
+    }
+
+    @Test
+    void isNotesAreEqualWithDifferentTitleReturnFalse() {
+        // Arrange
+        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        note1.setId(1);
+        Notes note2 = new Notes("Title #2", "Content #1", "11-2019");
+        note2.setId(1);
+
+        //Act
+        /*nothing for act*/
+
+        //Assert
+        Assertions.assertNotEquals(note1, note2);
+        System.out.println("Note Objects are note Equal.. they have different title");
+    }
+
+    @Test
+    void isNotesAreEqualWithDifferentContentReturnTrue() {
+        // Arrange
+        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        note1.setId(1);
+        Notes note2 = new Notes("Title #1", "Content #2", "11-2019");
+        note2.setId(1);
+
+        //Act
+        /*nothing for act*/
+
+        //Assert
+        Assertions.assertNotEquals(note1, note2);
+        System.out.println("Note Objects are not Equal.. they have different Content");
+    }
+
+    @Test
+    void name() {
         // Arrange
 
         //Act
