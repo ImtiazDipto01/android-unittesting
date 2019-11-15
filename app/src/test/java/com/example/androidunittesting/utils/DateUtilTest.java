@@ -1,4 +1,4 @@
-package com.example.androidunittesting.util;
+package com.example.androidunittesting.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

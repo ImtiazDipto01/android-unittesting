@@ -1,8 +1,10 @@
-package com.example.androidunittesting;
+package com.example.androidunittesting.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.androidunittesting.R;
 
 public class MainActivity extends AppCompatActivity {
 

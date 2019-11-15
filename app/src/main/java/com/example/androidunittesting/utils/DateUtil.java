@@ -1,4 +1,4 @@
-package com.example.androidunittesting.util;
+package com.example.androidunittesting.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
