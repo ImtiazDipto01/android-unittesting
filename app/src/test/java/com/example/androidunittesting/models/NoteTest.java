@@ -1,7 +1,5 @@
 package com.example.androidunittesting.models;
 
-import android.util.Log;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,9 +9,9 @@ public class NoteTest {
     @Test
     void isTwoNotesAreEqualIdenticalPropertyReturnTrue() throws Exception {
         // Arrange
-        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        Note note1 = new Note("Title #1", "Content #1", "11-2019");
         note1.setId(1);
-        Notes note2 = new Notes("Title #1", "Content #1", "11-2019");
+        Note note2 = new Note("Title #1", "Content #1", "11-2019");
         note2.setId(1);
 
         //Act
@@ -28,9 +26,9 @@ public class NoteTest {
     @Test
     void isTwoNotesMatchWithDifferentIdsReturnFalse() {
         // Arrange
-        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        Note note1 = new Note("Title #1", "Content #1", "11-2019");
         note1.setId(1);
-        Notes note2 = new Notes("Title #1", "Content #1", "11-2019");
+        Note note2 = new Note("Title #1", "Content #1", "11-2019");
         note2.setId(2);
 
         //Act
@@ -38,15 +36,15 @@ public class NoteTest {
 
         //Assert
         Assertions.assertNotEquals(note1, note2);
-        System.out.println("Notes Objects are not Equal");
+        System.out.println("Note Objects are not Equal");
     }
 
     @Test
     void isNotesAreEqualWithDifferentTimeStampReturnTrue() {
         // Arrange
-        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        Note note1 = new Note("Title #1", "Content #1", "11-2019");
         note1.setId(1);
-        Notes note2 = new Notes("Title #1", "Content #1", "12-2019");
+        Note note2 = new Note("Title #1", "Content #1", "12-2019");
         note2.setId(1);
 
         //Act
@@ -60,9 +58,9 @@ public class NoteTest {
     @Test
     void isNotesAreEqualWithDifferentTitleReturnFalse() {
         // Arrange
-        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        Note note1 = new Note("Title #1", "Content #1", "11-2019");
         note1.setId(1);
-        Notes note2 = new Notes("Title #2", "Content #1", "11-2019");
+        Note note2 = new Note("Title #2", "Content #1", "11-2019");
         note2.setId(1);
 
         //Act
@@ -76,9 +74,9 @@ public class NoteTest {
     @Test
     void isNotesAreEqualWithDifferentContentReturnTrue() {
         // Arrange
-        Notes note1 = new Notes("Title #1", "Content #1", "11-2019");
+        Note note1 = new Note("Title #1", "Content #1", "11-2019");
         note1.setId(1);
-        Notes note2 = new Notes("Title #1", "Content #2", "11-2019");
+        Note note2 = new Note("Title #1", "Content #2", "11-2019");
         note2.setId(1);
 
         //Act
