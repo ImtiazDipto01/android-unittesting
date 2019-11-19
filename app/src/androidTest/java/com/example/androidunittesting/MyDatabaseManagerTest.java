@@ -11,6 +11,11 @@ import org.junit.Before;
 
 public abstract class MyDatabaseManagerTest {
 
+    /*
+    * MyDatabaseManagerTest is instrumental test. because for instance of MyDatabaseManager you need context
+    * and context always comes from android system, that's why you need to create instrumental test.
+    */
+
     private MyDatabaseManager myDatabaseManager ;
 
     public NoteDao getNoteDao(){
