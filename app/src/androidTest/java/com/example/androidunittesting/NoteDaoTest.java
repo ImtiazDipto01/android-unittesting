@@ -1,11 +1,14 @@
 package com.example.androidunittesting;
 
+import android.database.sqlite.SQLiteConstraintException;
+
 import com.example.androidunittesting.models.Note;
 import com.example.androidunittesting.util.LiveDataTestUtil;
 import com.example.androidunittesting.util.TestUtil;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.internal.matchers.Not;
 
 import java.util.List;
 
@@ -85,7 +88,25 @@ public class NoteDaoTest extends MyDatabaseManagerTest {
 
     }
 
+    @Test(expected = SQLiteConstraintException.class)
+    public void insertNoteTitleNullThrowSQLiteConstraintExection() throws Exception{
+        Note note = new Note(TestUtil.TEST_NOTE_1) ;
+        note.setTitle(null);
 
+        getNoteDao().insertNote(note).blockingGet();
+    }
+
+    @Test(expected = SQLiteConstraintException.class)
+    public void updateNoteTitleNullThrowSQLiteConstraintExection() throws Exception{
+        Note note = new Note(TestUtil.TEST_NOTE_1) ;
+
+        //insert
+        getNoteDao().insertNote(note).blockingGet();
+
+        //update
+        LiveDataTestUtil<List<Note>> liveDataTestUtil = new LiveDataTestUtil<>();
+        List<Note> noteList = liveDataTestUtil.getValue(getNoteDao().getNoteList()) ;
+    }
 
 
 }
