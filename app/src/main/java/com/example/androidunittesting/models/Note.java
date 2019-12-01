@@ -47,10 +47,10 @@ public class Note implements Parcelable {
 
     @Ignore
     public Note(Note note){
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.timestamp = timestamp;
+        this.id = note.id;
+        this.title = note.title;
+        this.content = note.content;
+        this.timestamp = note.timestamp;
     }
 
     protected Note(Parcel in) {

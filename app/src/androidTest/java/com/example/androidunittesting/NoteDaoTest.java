@@ -2,13 +2,15 @@ package com.example.androidunittesting;
 
 import android.database.sqlite.SQLiteConstraintException;
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+
 import com.example.androidunittesting.models.Note;
 import com.example.androidunittesting.util.LiveDataTestUtil;
 import com.example.androidunittesting.util.TestUtil;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.internal.matchers.Not;
 
 import java.util.List;
 
@@ -17,6 +19,13 @@ public class NoteDaoTest extends MyDatabaseManagerTest {
     public static final String TEST_TITLE = "This is a test Title";
     public static final String TEST_CONTENT = "This is a test Content";
     public static final String TEST_TIMESTAMP = "01-2019";
+
+    /*
+        this rule added because unit testing can't perform background thread
+        so that we need to perform this unit testing on single thread
+    */
+    @Rule
+    public InstantTaskExecutorRule rule = new InstantTaskExecutorRule() ;
 
     // Insert, Read, Delete
     @Test
@@ -40,6 +49,7 @@ public class NoteDaoTest extends MyDatabaseManagerTest {
         Assert.assertEquals(note, insertedList.get(0));
 
         //delete
+        getNoteDao().deleteNote(note).blockingGet();
         insertedList = liveDataTestUtilList.getValue(getNoteDao().getNoteList());
         Assert.assertEquals(0, insertedList.size());
 
@@ -83,6 +93,7 @@ public class NoteDaoTest extends MyDatabaseManagerTest {
 
 
         //delete
+        getNoteDao().deleteNote(note).blockingGet();
         insertedList = liveDataTestUtilList.getValue(getNoteDao().getNoteList());
         Assert.assertEquals(0, insertedList.size());
 
@@ -103,9 +114,16 @@ public class NoteDaoTest extends MyDatabaseManagerTest {
         //insert
         getNoteDao().insertNote(note).blockingGet();
 
-        //update
+        //read
         LiveDataTestUtil<List<Note>> liveDataTestUtil = new LiveDataTestUtil<>();
         List<Note> noteList = liveDataTestUtil.getValue(getNoteDao().getNoteList()) ;
+        Assert.assertNotNull(noteList);
+
+        //update
+        note = new Note(noteList.get(0));
+        note.setTitle(null);
+        getNoteDao().updateNote(note).blockingGet();
+
     }
 
 

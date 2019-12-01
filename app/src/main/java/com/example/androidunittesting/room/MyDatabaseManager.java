@@ -9,7 +9,6 @@ import com.example.androidunittesting.models.Note;
 public abstract class MyDatabaseManager extends RoomDatabase {
 
     public static final String DATABASE_NAME = "notedb" ;
-    private static MyDatabaseManager instance ;
 
     public abstract NoteDao getNoteDao();
 
