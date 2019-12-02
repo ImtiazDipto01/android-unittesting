@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.room.Room;
 
+import com.example.androidunittesting.repository.NoteRepository;
 import com.example.androidunittesting.room.MyDatabaseManager;
 import com.example.androidunittesting.room.NoteDao;
 
@@ -30,6 +31,12 @@ public class AppModule {
     @Provides
     static NoteDao getNotesDao(MyDatabaseManager myDatabaseManager){
         return myDatabaseManager.getNoteDao();
+    }
+
+    @Singleton
+    @Provides
+    static NoteRepository provideNoteRepository(NoteDao noteDao){
+        return new NoteRepository(noteDao);
     }
 
 
