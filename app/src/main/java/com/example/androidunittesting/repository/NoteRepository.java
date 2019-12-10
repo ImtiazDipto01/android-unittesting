@@ -37,8 +37,14 @@ public class NoteRepository {
         this.noteDao = noteDao;
     }
 
-    public Flowable<Resource<Integer>> insertNote(Note note){
+    public Flowable<Resource<Integer>> insertNote(Note note) throws Exception{
+        checkNoteNull(note);
+    }
 
+    private void checkNoteNull(Note note) throws Exception{
+        if(note == null){
+            throw new Exception(NOTE_TITLE_NULL);
+        }
     }
 
 
