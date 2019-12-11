@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 @Singleton
 public class NoteRepository {
@@ -39,6 +41,33 @@ public class NoteRepository {
 
     public Flowable<Resource<Integer>> insertNote(Note note) throws Exception{
         checkNoteNull(note);
+        return noteDao.insertNote(note)
+                .delaySubscription(timeDelay, timeUnit)
+                .map(new Function<Long, Integer>() {
+                    @Override
+                    public Integer apply(Long aLong) throws Exception {
+                        long l = aLong ;
+                        return (int) l;
+                    }
+                })
+                .onErrorReturn(new Function<Throwable, Integer>() {
+                    @Override
+                    public Integer apply(Throwable throwable) throws Exception {
+                        return -1;
+                    }
+                })
+                .map(new Function<Integer, Resource<Integer>>() {
+                    @Override
+                    public Resource<Integer> apply(Integer integer) throws Exception {
+                        if(integer > 0){
+                            return Resource.success(integer, INSERT_SUCCESS);
+                        }
+                        return Resource.error(integer, INSERT_FAILURE);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .toFlowable();
+
     }
 
     private void checkNoteNull(Note note) throws Exception{
