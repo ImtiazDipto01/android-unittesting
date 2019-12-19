@@ -29,4 +29,25 @@ public class NoteRepositoryTest {
         Assertions.assertNotNull(noteDao);
         Assertions.assertNotNull(noteRepository);
     }
+
+    /*
+    * Insert Note
+    * Verify Correct Method is called
+    * Confirm Observer is triggered
+    * Confirm new row inserted
+    */
+
+
+    /*
+    * Insert Note
+    * Failure (return -1)
+    */
+
+
+    /*
+    * Insert Note
+    * null title
+    * confirm throw exception
+    * */
+
 }
