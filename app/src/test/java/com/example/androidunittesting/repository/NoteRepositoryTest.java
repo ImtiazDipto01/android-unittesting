@@ -36,12 +36,19 @@ public class NoteRepositoryTest {
     * Confirm Observer is triggered
     * Confirm new row inserted
     */
+    @Test
+    void insertNote_ReturnNote() {
 
+    }
 
     /*
     * Insert Note
     * Failure (return -1)
     */
+    @Test
+    void insertNote_ReturnFailure() throws Exception{
+
+    }
 
 
     /*
@@ -49,5 +56,9 @@ public class NoteRepositoryTest {
     * null title
     * confirm throw exception
     * */
+    @Test
+    void insertNote_NullTitle_ThrowException() throws Exception{
+
+    }
 
 }
